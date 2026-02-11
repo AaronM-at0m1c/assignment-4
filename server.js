@@ -78,7 +78,7 @@ app.get('/books/:id', (req, res) => {
 // POST /books - Create a new book
 app.post('/books', (req, res) => {
 
-    //Only allow PUT requests with valid json data
+    //Only allow PUT requests with valid JSON data
     if (!req.body || Object.keys(req.body).length === 0) {
         return res.status(400).json({ error: 'Missing or empty JSON body' });
     }
@@ -151,6 +151,14 @@ app.delete('/books/:id', (req, res) => {
   
   // Return the deleted book
   res.json({ message: 'Book deleted successfully', book: deletedbook });
+});
+
+// Error handling for invalid JSON input
+app.use((err, req, res, next) => {
+    if (err instanceof SyntaxError && err.status === 400 && 'body' in err) {
+        return res.status(400).json({ error: 'Invalid JSON' });
+    }
+    next(err);
 });
 
 // Start the server but only when running directly, not when testing
