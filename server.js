@@ -77,6 +77,12 @@ app.get('/books/:id', (req, res) => {
 
 // POST /books - Create a new book
 app.post('/books', (req, res) => {
+
+    //Only allow PUT requests with valid json data
+    if (!req.body || Object.keys(req.body).length === 0) {
+        return res.status(400).json({ error: 'Missing or empty JSON body' });
+    }
+
     // Extract data from request body
     const { title, author, genre, copiesAvailable } = req.body;
   
@@ -98,6 +104,12 @@ app.post('/books', (req, res) => {
 
 // PUT /books/:id - Update an existing book
 app.put('/books/:id', (req, res) => {
+
+    //Only allow PUT requests with valid json data
+    if (!req.body || Object.keys(req.body).length === 0) {
+        return res.status(400).json({ error: 'Missing or empty JSON body' });
+    }
+
     const bookId = parseInt(req.params.id);
     const { title, author, genre, copiesAvailable } = req.body;
     
