@@ -61,7 +61,7 @@ app.get('/books', (req, res) => {
       res.json(books);
 });
 
-// GET /books/:id - Return a specific book by ID
+// GET /books/{id} - Return a specific book by ID
 app.get('/books/:id', (req, res) => {
     const bookId = parseInt(req.params.id);
     const book = books.find(m => m.id === bookId);
@@ -70,6 +70,7 @@ app.get('/books/:id', (req, res) => {
     if (book) {
         res.json(book);
     } else {
+        // If the book is not found, return 404
         res.status(404).json({ error: 'Book not found' });
     }
 });
@@ -104,6 +105,7 @@ app.put('/books/:id', (req, res) => {
     const bookIndex = books.findIndex(m => m.id === bookId);
     
     if (bookIndex === -1) {
+        // If the book is not found, return 404
         return res.status(404).json({ error: 'Book not found' });
     }
     
@@ -128,6 +130,7 @@ app.delete('/books/:id', (req, res) => {
   const bookIndex = books.findIndex(m => m.id === bookId);
   
   if (bookIndex === -1) {
+    // If the book is not found, return 404
     return res.status(404).json({ error: 'Book not found' });
   }
   
@@ -142,22 +145,3 @@ app.delete('/books/:id', (req, res) => {
 app.listen(port, () => {
     console.log(`Bookstore API running at http://localhost:${port}`);
 });
-
-/* Create your REST API here with the following endpoints:
-    'GET /api/books': 'Get all books',
-    'GET /api/books/:id': 'Get a specific book',
-    'POST /api/books': 'Add a new book',
-    'PUT /api/books/:id': 'Update a book',
-    'DELETE /api/books/:id': 'Delete a book'
-*/
-
-
-
-
-
-
-
-
-
-
-
