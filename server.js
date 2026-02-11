@@ -141,7 +141,13 @@ app.delete('/books/:id', (req, res) => {
   res.json({ message: 'Book deleted successfully', book: deletedbook });
 });
 
-// Start the server
-app.listen(port, () => {
-    console.log(`Bookstore API running at http://localhost:${port}`);
-});
+// Start the server but only when running directly, not when testing
+if (require.main === module) {
+    app.listen(port, () => {
+         console.log(`API server running at
+    http://localhost:${port}`);
+    });
+}
+
+//Export the application
+module.exports = app;
