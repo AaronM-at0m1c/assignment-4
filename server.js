@@ -164,8 +164,7 @@ app.use((err, req, res, next) => {
 // Start the server but only when running directly, not when testing
 if (require.main === module) {
     app.listen(port, () => {
-         console.log(`API server running at
-    http://localhost:${port}`);
+         console.log(`API server running at http://localhost:${port}`);
     });
 }
 
