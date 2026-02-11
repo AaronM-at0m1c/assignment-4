@@ -38,7 +38,7 @@ let books = [
     {
         id: 5,
         title: "The Hobbit",
-        author: "J.R.R Tolkien",
+        author: "J.R.R. Tolkien",
         genre: "Fantasy",
         copiesAvailable: 12
     }
